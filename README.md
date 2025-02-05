@@ -46,7 +46,7 @@ With these optimizations, I am able to get the inference cost per API request to
 
 ## How to Protect the API Endpoints
 
-A main concern I have is that while it's free, if a malicious scripter tried to call my API I could incur heavy GPU costs. And I don't want users to need to create an account either. To do this, I require all users to have a session key before calling the API. This session key is only accessible through a persistent WebSocket connection that will be protected by captive authentication. The key expires after the user completes the separation, if the WebSocket disconnects, or after a predetermined session timeout.
+A main concern I have is that while it's free, if a malicious scripter tried to call my API I could incur heavy GPU costs. And I don't want users to need to create an account either. To do this, I require all users to have a session key before calling the API. This session key is only accessible through a persistent WebSocket connection that will be protected by CAPTCHA authentication. The key expires after the user completes the separation, if the WebSocket disconnects, or after a predetermined session timeout.
 
 I still need to do some work for this. I have not implemented the session timeout, for example. I also might consult some of my system security friends to get their thoughts on this.
 
