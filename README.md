@@ -38,7 +38,7 @@ To do this, two main approaches are used to reduce inference cost:
    
    - **Modal:** Finally, I settled on Modal. Modal has a very intelligent image indexing system and a super-optimized GPU function execution stack. They don't index on layers. Since a Docker container can be defined as a file structure, they index on the files themselves and have a FUSE mount to get the files as fast as possible. They can even snapshot the process memory for faster restoration. See this really cool talk to learn more: [Modal Talk](https://www.youtube.com/watch?v=3jJ1GhGkLY0).
 
-   With Modal, from cold-start to inference to cooldown I am able to get a sub-20 second GPU time for a full 3-minute track—sometimes even sub-15 seconds. The main bottleneck is actually the data transfer of the audio.
+   With Modal, from cold-start to inference to cooldown I am able to get a sub-20 second GPU time for a full 3-minute track—sometimes even sub-15 seconds. The main bottleneck is actually the data transfer of the audio. I was able to cut this down a bit by forcing the Modal instances to run on the same region. Particularly, US-East-1, the location of Modal's control plane. 
 
 With these optimizations, I am able to get the inference cost per API request to a sub-$0.005 cost per request. For low traffic, this is definitely affordable. I'm hoping to get this down even more with optimizations to the data transfer, and potentially request free compute credits from Modal.
 
